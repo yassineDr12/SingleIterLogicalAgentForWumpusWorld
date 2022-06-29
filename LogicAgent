@@ -29,11 +29,11 @@ setHunterAt() :- (retractall(hunterAt(r(_,_),_)),
                  write('Enter hunter facing position: '), nl, read(Z),
                  assert(hunterAt(r(X,Y),Z))).
 
-% Setting pits with a probability of 20%.
+% Setting pits with a probability of 25%.
 
 setPitsPos() :- retractall(pit(r(_,_))), pitsPos().
 pitsPos() :- forall(member(X-Y, [1-1,1-2,1-3,1-4,2-1,2-2,2-3,2-4,3-1,3-2,3-3,3-4,4-1,4-2,4-3,4-4]), pitProb(X,Y)).
-pitProb(X,Y):- (maybe(0.2),\+hunterAt(r(X,Y),_),\+wumpus(r(X,Y)) ,assert(pit(r(X,Y)))); true.
+pitProb(X,Y):- (maybe(0.25),\+hunterAt(r(X,Y),_),\+wumpus(r(X,Y)) ,assert(pit(r(X,Y)))); true.
 
 % Setting wumpus position.
 
